@@ -1,11 +1,3 @@
-def loadProperties() {
-    node {
-        checkout scm
-        properties = readProperties file: 'config.ini'
-        echo "Read config.ini file"
-    }
-}
-
 pipeline {
   agent none
 
@@ -15,8 +7,9 @@ pipeline {
         agent any
 
         steps {
+            checkout scm
             script {
-                loadProperties()
+                properties = readProperties file: 'config.ini'
                 echo "App Name - ${properties.APP_NAME}"
             }
         }
@@ -26,7 +19,7 @@ pipeline {
       agent any
 
       steps {
-        echo "Inside stage setup"
+        echo "Inside stage setup for ${properties.APP_NAME}"
       }
     }
   }
