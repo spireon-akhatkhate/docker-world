@@ -2,7 +2,7 @@ pipeline {
   agent none
 
   environment {
-    APP_NAME = 'hello-world'
+    APP_NAME = readProperties(file: config.ini')['APP_NAME']
   }
 
   stages {
@@ -10,7 +10,7 @@ pipeline {
       agent any
 
       steps {
-        echo "Inside stage setup"
+        echo "Setup complete or ${APP_NAME}"
       }
     }
   }
