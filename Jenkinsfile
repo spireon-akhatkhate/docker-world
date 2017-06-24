@@ -2,7 +2,7 @@ pipeline {
   agent none
 
   environment {
-    APP_NAME = readProperties(file: config.ini')['APP_NAME']
+    APP_NAME = readProperties(file: 'config.ini')['APP_NAME']
   }
 
   stages {
